@@ -64,7 +64,7 @@
 -->
 
   
-
+[![LinkedIn][linkedin-shield]][linkedin-url]
   
 
 <!-- PROJECT LOGO -->
@@ -310,8 +310,6 @@ php artisan migrate
 ```
 
 8. Abrir en Chrome o Firefox `pruebappist.test`
-
-```
   
 
   
