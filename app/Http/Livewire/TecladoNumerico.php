@@ -7,7 +7,7 @@ use Livewire\Component;
 class TecladoNumerico extends Component
 {
 
-    public $texto;
+    public $entrada = '';
     public $numero_actual = 0, $numero_anterior = 0, $contador = 0, $repeticion = false;
     public $temp = 0;
 
@@ -43,6 +43,8 @@ class TecladoNumerico extends Component
         }
 
         $this->temp = $this->numero_actual;
+
+        $this->casosLetras($this->numero_actual, $this->contador);
     }
 
     public function casosClicks($i)
@@ -67,11 +69,65 @@ class TecladoNumerico extends Component
         }
     }
 
-    public function resetVariables(){
-     $this->numero_actual = 0;
-     $this->numero_anterior = 0;
-     $this->contador = 0;
-     $this->repeticion = false;
-     $this->temp = 0;
+    public function casosLetras($numero, $letra)
+    {
+        switch ($numero) {
+            case 1:
+                break;
+            case 2:
+                $letra == 1 ?  $this->entrada = 'A'  : ($letra == 2 ? $this->entrada = 'B'  : ($letra == 3 ? $this->entrada = 'C'  : ($letra == 4 ? $this->entrada = '2'  : ''
+                )));
+                break;
+            case 3:
+                $letra == 1 ?  $this->entrada = 'D'  : ($letra == 2 ? $this->entrada = 'E'  : ($letra == 3 ? $this->entrada = 'F'  : ($letra == 4 ? $this->entrada = '3'  : ''
+                )));
+                break;
+            case 4:
+                $letra == 1 ?  $this->entrada = 'G'  : ($letra == 2 ? $this->entrada = 'H'  : ($letra == 3 ? $this->entrada = 'I'  : ($letra == 4 ? $this->entrada = '4'  : ''
+                )));
+                break;
+            case 5:
+                $letra == 1 ?  $this->entrada = 'J'  : ($letra == 2 ? $this->entrada = 'L'  : ($letra == 3 ? $this->entrada = 'K'  : ($letra == 4 ? $this->entrada = '5'  : ''
+                )));
+                break;
+            case 6:
+                $letra == 1 ?  $this->entrada = 'M'  : ($letra == 2 ? $this->entrada = 'N'  : ($letra == 3 ? $this->entrada = 'O'  : ($letra == 4 ? $this->entrada = '6'  : ''
+                )));
+                break;
+            case 7:
+                $letra == 1 ?  $this->entrada = 'P'  : ($letra == 2 ? $this->entrada = 'Q'  : ($letra == 3 ? $this->entrada = 'R'  : ($letra == 4 ? $this->entrada = 'S'  : ($letra == 5 ? $this->entrada = '7'  : '')
+                )));
+                break;
+            case 8:
+                $letra == 1 ?  $this->entrada = 'T'  : ($letra == 2 ? $this->entrada = 'U'  : ($letra == 3 ? $this->entrada = 'V'  : ($letra == 4 ? $this->entrada = '8'  : ''
+                )));
+                break;
+            case 9:
+                $letra == 1 ?  $this->entrada = 'W'  : ($letra == 2 ? $this->entrada = 'X'  : ($letra == 3 ? $this->entrada = 'Y'  : ($letra == 4 ? $this->entrada = 'Z'  : ($letra == 5 ? $this->entrada = '9'  : '')
+                )));
+                break;
+            case 10:
+                $letra == 1 ? $this->entrada = '*' : '';
+                break;
+            case 11:
+                $letra == 1 ? $this->entrada = '0' : ($letra == 1 ? $this->entrada = '+' : '');
+                break;
+            case 12:
+                $letra == 1 ? $this->entrada = '#' : '';
+                break;
+
+            default:
+
+                break;
+        }
+    }
+
+    public function resetVariables()
+    {
+        $this->numero_actual = 0;
+        $this->numero_anterior = 0;
+        $this->contador = 0;
+        $this->repeticion = false;
+        $this->temp = 0;
     }
 }
