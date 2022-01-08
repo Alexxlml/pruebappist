@@ -180,8 +180,6 @@ Projecto para evaluación de conocimientos, desarrollado en Laravel 8 con Jetstr
 
 * Descargar e instalar [Composer](https://getcomposer.org/download/)
 
-* Habilitar la libreria `GD` en XAMPP, puedes seguir el siguiente [Tutorial](https://www.youtube.com/watch?v=b5aAYE7s_vI)
-
 * Crear un dominio virtual para la aplicación, puedes seguir el siguiente [Tutorial](https://www.youtube.com/watch?v=HzygRlPmYQc&t=182s&ab_channel=CodersFree)
 
   
