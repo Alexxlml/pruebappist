@@ -7,12 +7,16 @@ use Livewire\Component;
 class TecladoNumerico extends Component
 {
 
-    public $entrada = "", $salida = "";
+    public $entrada = "", $entrada_final, $salida = "", $salidaArray;
     public $numero_actual = 0, $numero_anterior = 0, $contador = 0, $repeticion = false;
     public $temp = 0;
+    public $switch = false;
+
+    public $tiempo = 0, $tiempo_inicial = 0, $tiempo_final = 0;
 
     public function mount()
     {
+        $this->salidaArray = collect([]);
     }
 
     public function render()
@@ -20,8 +24,33 @@ class TecladoNumerico extends Component
         return view('livewire.teclado-numerico');
     }
 
+    public function revisarTiempo()
+    {
+        if ($this->tiempo_inicial == 0) {
+        } else {
+            $this->tiempo_final = microtime(true);
+            $this->tiempo = round($this->tiempo_final - $this->tiempo_inicial);
+        }
+
+        if ($this->tiempo == 1) {
+            $this->tiempo_inicial = 0;
+            $this->tiempo = 0;
+            $this->entrada_final .= $this->entrada;
+            $this->entrada = "";
+            $this->switch = false;
+            $arraytmp = "[" . strval($this->numero_actual) . "," . strval($this->contador) . "]";
+            $this->salidaArray->push($arraytmp);
+            $this->salida = $this->salidaArray->all();
+            $this->resetVariables();
+        } else {
+        }
+    }
+
     public function clicks($numero)
     {
+        $this->tiempo = 0;
+        $this->tiempo_inicial = microtime(true);
+        $this->switch = true;
         if ($this->temp != 0) {
             $this->numero_anterior = $this->temp;
         }
@@ -73,6 +102,8 @@ class TecladoNumerico extends Component
     {
         switch ($numero) {
             case 1:
+                $letra == 1 ? $this->entrada = ' ' : ($letra == 2 ? $this->entrada = '1' : '');
+                $letra > 2 ? $this->resetVariables() : '';
                 break;
             case 2:
                 $letra == 1 ?  $this->entrada = 'A'  : ($letra == 2 ? $this->entrada = 'B'  : ($letra == 3 ? $this->entrada = 'C'  : ($letra == 4 ? $this->entrada = '2'  : ''
@@ -90,7 +121,7 @@ class TecladoNumerico extends Component
                 $letra > 4 ? $this->resetVariables() : '';
                 break;
             case 5:
-                $letra == 1 ?  $this->entrada = 'J'  : ($letra == 2 ? $this->entrada = 'L'  : ($letra == 3 ? $this->entrada = 'K'  : ($letra == 4 ? $this->entrada = '5'  : ''
+                $letra == 1 ?  $this->entrada = 'J'  : ($letra == 2 ? $this->entrada = 'K'  : ($letra == 3 ? $this->entrada = 'L'  : ($letra == 4 ? $this->entrada = '5'  : ''
                 )));
                 $letra > 4 ? $this->resetVariables() : '';
                 break;
@@ -138,5 +169,14 @@ class TecladoNumerico extends Component
         $this->contador = 0;
         $this->repeticion = false;
         $this->temp = 0;
+    }
+
+    public function limpiar()
+    {
+        $this->resetVariables();
+        $this->salida = "";
+        $this->salidaArray = collect([]);
+        $this->entrada = "";
+        $this->entrada_final = "";
     }
 }
