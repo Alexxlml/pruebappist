@@ -24,3 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/teclado', function () {
     return view('teclado/tecladoNumerico');
 })->name('teclado');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/tictactoe', function () {
+    return view('tictactoe/tictactoe');
+})->name('tictactoe');
