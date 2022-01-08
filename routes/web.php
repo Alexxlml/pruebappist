@@ -28,3 +28,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/teclado', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/tictactoe', function () {
     return view('tictactoe/tictactoe');
 })->name('tictactoe');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/autocompletar', function () {
+    return view('autocompletar/autocompletarNombre');
+})->name('autocompletar');
